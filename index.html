@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Aplicação</title>
+</head>
+<body>
+
+    <ul id="minhaLista">
+
+    </ul>
+
+
+    <script>
+        async function buscaDados(){
+            const resposta = await fetch("http://localhost:8000/estudantes")
+            //console.log(resposta)
+            if(resposta.status === 200){
+                const dados = await resposta.json()
+                //console.log(dados)
+                const ul = document.getElementById("minhaLista");
+                for (let i = 0; i < dados.length; i++) {
+                    const obj = dados[i];
+                    //console.log(obj.nome)
+                    const li = docuement.createElement("li")
+                    li.innerText = obj.nome
+                    ul.appendChild(li)
+                }
+
+            }else{
+                if(resposta.status === 400){
+                    const dados = await resposta.json()
+                    alert(dados.mensagem)
+                }else{
+                    alert("Erro Desconhecido!")
+                }
+            }
+        }
+        buscaDados()
+        </script>
+</body>
+</html>
