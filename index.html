@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Aplicação Mudada pro tere ver</title>
+    <title>Minha Aplicação Mudada</title>
 </head>
 <body>
-
-    <ul id="minhaLista">
-
+    <a href = "./cadastro.html">Cadastro</a>
+    <h1>Lista de Estudantes</h1>
+    <ul id="minhalista">
     </ul>
-
 
     <script>
         async function buscaDados(){
@@ -19,14 +18,17 @@
             if(resposta.status === 200){
                 const dados = await resposta.json()
                 //console.log(dados)
-                const ul = document.getElementById("minhaLista");
+                const ul = document.getElementById("minhalista")
                 for (let i = 0; i < dados.length; i++) {
                     const obj = dados[i];
                     //console.log(obj.nome)
-                    const li = docuement.createElement("li")
+                    const li = document.createElement("li")
                     li.innerText = obj.nome
                     ul.appendChild(li)
                 }
+                // vai passar por cada elemento dos dados
+                // vai criar um li pra cada dado
+                // adicionar o li na lista com id "minhalista"
 
             }else{
                 if(resposta.status === 400){
