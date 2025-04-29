@@ -17,13 +17,15 @@
         async function trataForm(){
             const idInput = document.getElementById("id");
             const idNome = document.getElementById("nome");
-            const id = idInput.Value;
-            const nome = idNome.Value;
+            const id = idInput.value;
+            const nome = idNome.value;
 
             const objEstudante = {
                 id,
                 nome
+        
             } 
+            console.log(objEstudante);
             try{
                 const resposta = await fetch("http://localhost:8000/estudantes", {
                 headers:{
@@ -35,8 +37,12 @@
             if(resposta.status===404){
                 alert("estudante não foi excluído")
             }
+            if(resposta.status===400){
+                const dados = await resposta.json()
+                alert ("Deu erro \n"+ dados.mensagem)
+            }
             if(resposta.status===200){
-                alert("Estudante Excluido com sucesso")
+                alert("Estudante colocado com sucesso")
             }
         }catch(erro){
             console.log(erro)
